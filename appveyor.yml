@@ -21,7 +21,7 @@ test_script:
     - more exception_benchmark_linux.txt
 
 artifacts:
-  - path: exception_benchmark.xml
+  - path: exception_benchmark.txt
     name: test_results
-  - path: exception_benchmark_linux.xml
+  - path: exception_benchmark_linux.txt
     name: test_results
