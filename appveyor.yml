@@ -16,9 +16,9 @@ build_script:
 
 test_script:
     - '&"./Runtime/win_x64_Release/exception_perf.exe" > exception_benchmark.txt'
-    - more CoreLib_charconv_benchmark.txt
+    - more exception_benchmark.txt
     - wsl /mnt/c/projects/sandbox/Runtime/lin_x86_64_Release/exception_perf.out > exception_benchmark_linux.txt
-    - more CoreLib_charconv_benchmark_linux.txt
+    - more exception_benchmark_linux.txt
 
 artifacts:
   - path: exception_benchmark.xml
