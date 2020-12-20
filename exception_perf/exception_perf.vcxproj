@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2614ded4-ff70-4fa9-820f-c1556c83d4d6}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_except|x64">
+      <Configuration>Release_except</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Release|x64">
+      <Configuration>WSL_Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Release_except|x64">
+      <Configuration>WSL_Release_except</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release' OR '$(Configuration)'=='Release_except'">
+    <PlatformToolset>v142</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Release' OR '$(Configuration)'=='WSL_Release_except'">
+    <PlatformToolset>WSL_1_0</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)locations.props" />
+    <Import Project="$(quickMSBuildPath)default.cpp.props" />
+    <Import Project="$(benchmarkPath)benchmark.import.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ClCompile>
+      <ExceptionHandling Condition="'$(Configuration)'=='Release_except'">Async</ExceptionHandling>
+      <ExceptionHandling Condition="'$(Configuration)'=='WSL_Release_except'">Enabled</ExceptionHandling>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\exception_perf.cpp" />
+  </ItemGroup>
+  <Import Project="$(quickMSBuildPath)default.cpp.targets" />
+</Project>
