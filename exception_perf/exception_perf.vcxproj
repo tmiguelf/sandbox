@@ -22,11 +22,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release' OR '$(Configuration)'=='Release_except'">
-    <PlatformToolset>v142</PlatformToolset>
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
     <UseDebugLibraries>false</UseDebugLibraries>
   </PropertyGroup>
   <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Release' OR '$(Configuration)'=='WSL_Release_except'">
-    <PlatformToolset>WSL_1_0</PlatformToolset>
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
     <UseDebugLibraries>false</UseDebugLibraries>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
